@@ -10,16 +10,16 @@
 std::mutex forks[N];
 std::mutex print_mu;
 
-void think(int i) { 
+void think(int i) {  
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     std::lock_guard<std::mutex> print_guard(print_mu);
     std::cout << "Philosopher #" << i << " - sleeping 3 seconds" << std::endl; 
-    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 }
 
-void eat(int i) { 
+void eat(int i) {  
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     std::lock_guard<std::mutex> print_guard(print_mu);
     std::cout << "Philosopher #" << i << " - eating 5 seconds" << std::endl; 
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void init(int i) {
